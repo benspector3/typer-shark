@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/piece.css">
+    <script src="js/index.js" type="module" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <header id="header">
+            <form id="word-form">
+                <input size="5" type="text" name="word" id="word-input">
+            </form>
+            <div id="score-container">
+                <p>Score: <span id="score-board">0</span></p>
+            </div>
+            <div id="missed-words-container">
+                <p>Missed Words: <span id="missed-words">0</span></p>
+            </div>
+            <div id="timer-container">
+                <p>Time: <span id="timer"></span></p>
+            </div>
+            
+            <button id="pause">Pause</button>
+        </header>
+        <main id="main">
+            <div id="board">
+            </div>
+        </main>
+        <footer id="footer"></footer>
+    </div>
+</body>
+</html>
