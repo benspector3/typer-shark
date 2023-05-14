@@ -1,62 +1,32 @@
-
-// Update with your config settings.
 require('dotenv').config();
 const path = require('path');
 
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
 module.exports = {
-
   development: {
     client: 'pg',
     connection: {
-      database: process.env.PG_DB || 'my_db',
-      user:     process.env.PG_USER || 'username',
-      password: process.env.PG_PASSWORD || 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
+      host: process.env.PG_HOST || '127.0.0.1',
+      port: process.env.PG_PORT || 5432,
+      user: process.env.PG_USER || 'postgres',
+      password: process.env.PG_PASS || 'postgres',
+      database: process.env.PG_DB || 'auth_example',
     },
     migrations: {
-      directory: path.join(__dirname, 'db', 'migrations')
+      directory: path.join(__dirname, 'src', 'db', 'migrations'),
+      stub: path.join(__dirname, 'migration-stub.js'),
     },
     seeds: {
-      directory: path.join(__dirname, 'db', 'seeds')
-    }
+      directory: path.join(__dirname, 'src', 'db', 'seeds'),
+    },
   },
-
-  staging: {
-    client: 'postgresql',
+  test: {
+    client: 'pg',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      host: process.env.PG_HOST || '127.0.0.1',
+      port: process.env.PG_PORT || 5432,
+      user: process.env.PG_USER || 'postgres',
+      password: process.env.PG_PASS || 'postgres',
+      database: process.env.database || 'postgres',
     },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
   },
-
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
-
 };
