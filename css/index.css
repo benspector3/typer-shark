@@ -3,6 +3,8 @@ html {
 }
 body {
     height: 100%;
+    background: black;
+    color: white;
 }
 
 #root {
@@ -25,7 +27,7 @@ body {
 }
 
 #board {
-    background: black;
+    background: blue;
     color: white;
     height: 100%;
     width: 1200px;

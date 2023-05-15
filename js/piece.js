@@ -1,5 +1,5 @@
 export default class Piece {
-    constructor(board, word, speed = 5) {
+    constructor(board, word, speed = 4) {
         this.board = board;
         this.word = word;
         this.x = 0;
@@ -8,9 +8,6 @@ export default class Piece {
         this.speed = speed;
         this.element = document.createElement('div');
         this.element.className = 'piece';
-        this.element.innerHTML = `
-            <p>${word}</p>
-        `
         this.addPieceToBoard();
     }
 
@@ -32,6 +29,11 @@ export default class Piece {
 
     setStartingPosition() {
         const startingDirection = Math.random() > 0.5 ? 1 : -1;
+
+        this.element.innerHTML = `
+            <p>${this.word}</p>
+            <img src='./static/shark-${startingDirection === -1 ? 'left' : 'right'}.png'>
+        `
         const boardData = this.board.getBoundingClientRect();
         const startingX = startingDirection > 0 
             ? boardData.x - this.element.clientWidth

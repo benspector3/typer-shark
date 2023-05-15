@@ -21,7 +21,7 @@ export default class Game {
     }
 
     nextWord() {
-        const speed = 5 + (Math.random() * 5)
+        const speed = 5 + (Math.random() * 4)
 
         const newPiece = new Piece(board, this.words.pop(), speed)
         this.pieces.push(newPiece)
