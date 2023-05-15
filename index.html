@@ -13,8 +13,9 @@
     <div id="root">
         <header id="header">
             <form id="word-form">
-                <input size="5" type="text" name="word" id="word-input">
+                <input autocomplete='off' autocapitalize='off' size="5" type="text" name="word" id="word-input">
             </form>
+
             <div id="score-container">
                 <p>Score: <span id="score-board">0</span></p>
             </div>
@@ -25,7 +26,7 @@
                 <p>Time: <span id="timer"></span></p>
             </div>
             
-            <button id="pause">Pause</button>
+            <button id="pause">Start</button>
         </header>
         <main id="main">
             <div id="board">

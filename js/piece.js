@@ -11,6 +11,11 @@ export default class Piece {
         this.element.innerHTML = `
             <p>${word}</p>
         `
+        this.addPieceToBoard();
+    }
+
+    addPieceToBoard() {
+        this.board.append(this.element);
     }
 
     move() {
@@ -27,10 +32,11 @@ export default class Piece {
 
     setStartingPosition() {
         const startingDirection = Math.random() > 0.5 ? 1 : -1;
+        const boardData = this.board.getBoundingClientRect();
         const startingX = startingDirection > 0 
-            ? 0 - this.element.clientWidth
-            : this.board.clientWidth;
-        const startingY = Math.random() * this.board.clientHeight;
+            ? boardData.x - this.element.clientWidth
+            : boardData.x  + boardData.width;
+        const startingY = boardData.y + Math.random() * boardData.height;
         this.position(startingX, startingY, startingDirection);
     }
     
@@ -43,8 +49,9 @@ export default class Piece {
     }
 
     isInBounds() {
+        const boardData = this.board.getBoundingClientRect();
         const trueX = Number(this.element.style.left.slice(0, -2));
-        if (trueX < -this.element.clientWidth || trueX > this.board.clientWidth) {
+        if (trueX <= -this.element.clientWidth || trueX >= boardData.x + boardData.width) {
             return true;
         }
     }

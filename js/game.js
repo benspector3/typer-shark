@@ -5,7 +5,7 @@ const MAX_TIME = 60;
 export default class Game {
     constructor(words, board, scoreBoard, timer, missedWordsDisplay) {
         this.words = words;
-        this.score = 0;
+        this.wordsTyped = 0;
         this.missedWords = 0;
         this.pieces = []
         this.board = board;
@@ -16,7 +16,7 @@ export default class Game {
         this.newWordInterval = null;
         this.timerInterval = null;
         this.time = MAX_TIME;
-        this.isPaused = false;
+        this.isPaused = true;
         this.isOver = false;
     }
 
@@ -27,8 +27,6 @@ export default class Game {
         this.pieces.push(newPiece)
         
         newPiece.setStartingPosition();
-
-        this.board.append(newPiece.element);
         return newPiece;
     }
 
@@ -39,8 +37,8 @@ export default class Game {
         this.pieces.splice(matchingPieceIdx, 1)
         matchingPiece.element.remove();
         this.nextWord();
-        this.score++;
-        this.scoreBoard.innerText = this.score;
+        this.wordsTyped++;
+        this.scoreBoard.innerText = this.wordsTyped;
     }
 
     movePieces() {
@@ -81,15 +79,10 @@ export default class Game {
         }
     }
 
-    start() {
-        this.nextWord();
-        this.timer.innerText = MAX_TIME;
-        this.startTimers();
-    }
-
     end() {
+        this.isOver = true;
         this.stopTimers();
-    }
+        alert(`Nice job! You typed ${this.wordsTyped} words and missed ${this.missedWords} words for a score of ${this.wordsTyped-this.missedWords}! Refresh the page to play again`)    }
 
     update() {
         if (this.isPaused) return;

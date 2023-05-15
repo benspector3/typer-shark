@@ -16,6 +16,7 @@ function main() {
         const words = await getWords();
         shuffle(words);
         game = new Game(words, board, scoreBoard, timer, missedWordsDisplay);
+        game.nextWord();
         
         wordInput.focus();
         wordForm.addEventListener('submit', (e) => {
@@ -25,10 +26,15 @@ function main() {
             wordInput.focus();
         });
         pauseButton.addEventListener('click', () => {
+            if (game.isOver) {
+                // init();
+                alert('refresh the page to play again')
+                return;
+            }
             game.togglePause();
+            pauseButton.innerText = game.isOver ? 'Play Again!' : game.isPaused ? 'Start' : 'Pause';
+            wordInput.focus();
         })
-        
-        game.start();
     }
     
     init();

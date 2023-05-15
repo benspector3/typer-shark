@@ -28,7 +28,8 @@ body {
     background: black;
     color: white;
     height: 100%;
-    max-width: 1200px;
+    width: 1200px;
+    margin: auto;
 }
 
 #word-input {
