@@ -5,6 +5,7 @@ body {
     height: 100%;
     background: black;
     color: white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #root {
@@ -13,6 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
 }
 
 #header {
@@ -32,6 +34,27 @@ body {
     height: 100%;
     width: 1200px;
     margin: auto;
+}
+
+#results {
+    position: absolute;
+    background: lightblue;
+    color: black;
+    width: 300px;
+    height: 100px;
+    left: calc(50% - 150px);
+    top: calc(50% - 100px);
+    align-items: center;
+    justify-content: center;
+    display: none;
+    text-align:center;
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+p {
+    margin: .2rem;
+    padding: 0;
 }
 
 #word-input {

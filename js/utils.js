@@ -10,7 +10,8 @@ export async function doFetch(url, options) {
 
 export const getWords = async () => {
     let words = await doFetch('./static/wordlist.txt');
-    words = words.split('\n')
+    words = words.split('\n');
+    shuffle(words);
     return words
 }
 

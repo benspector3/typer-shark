@@ -1,6 +1,6 @@
 import Piece from './piece.js'
 
-const MAX_TIME = 60;
+const MAX_TIME = 1;
 const WORDS_PER_MINUTE = 60;
 
 export default class Game {
@@ -9,10 +9,12 @@ export default class Game {
         this.wordsTyped = 0;
         this.missedWords = 0;
         this.pieces = []
+
         this.board = board;
         this.scoreBoard = scoreBoard;
         this.timer = timer;
         this.missedWordsDisplay = missedWordsDisplay;
+
         this.updateInterval = null;
         this.newWordInterval = null;
         this.timerInterval = null;
@@ -80,7 +82,15 @@ export default class Game {
     end() {
         this.isOver = true;
         this.stopTimers();
-        alert(`Nice job! You typed ${this.wordsTyped} words and missed ${this.missedWords} words for a score of ${this.wordsTyped-this.missedWords}! Refresh the page to play again`)    }
+        const results = document.querySelector("#results");
+        results.style.display = "flex";
+        results.innerHTML = `
+            <p>Nice job!</p>
+            <p>You typed <strong>${this.wordsTyped}</strong> words and missed <strong>${this.missedWords}</strong> words for a score of <strong>${this.wordsTyped-this.missedWords}</strong>!</p>
+            <p>Refresh the page to play again</p>
+        
+        `  
+    }
 
     update() {
         if (this.isPaused) return;

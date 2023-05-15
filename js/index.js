@@ -1,4 +1,4 @@
-import { getWords, shuffle } from "./utils.js";
+import { getWords } from "./utils.js";
 import Game from "./game.js";
 
 function main() {
@@ -10,13 +10,10 @@ function main() {
     const wordInput = document.querySelector("#word-input");
     const pauseButton = document.querySelector("button#pause");
     let game;
-
     
     async function init() {
         const words = await getWords();
-        shuffle(words);
         game = new Game(words, board, scoreBoard, timer, missedWordsDisplay);
-        game.nextWord();
         
         wordInput.focus();
         wordForm.addEventListener('submit', (e) => {
@@ -28,11 +25,11 @@ function main() {
         pauseButton.addEventListener('click', () => {
             if (game.isOver) {
                 // init();
-                alert('refresh the page to play again')
+                alert('refresh the page to play again');
                 return;
             }
             game.togglePause();
-            pauseButton.innerText = game.isOver ? 'Play Again!' : game.isPaused ? 'Start' : 'Pause';
+            pauseButton.innerText = game.isPaused ? 'Start' : 'Pause';
             wordInput.focus();
         })
     }
