@@ -1,11 +1,11 @@
 export default class Piece {
-    constructor(board, word, speed = 4) {
+    constructor(board, word) {
         this.board = board;
         this.word = word;
         this.x = 0;
         this.y = 0;
         this.directionX = 0;
-        this.speed = speed;
+        this.speed = 6 + (Math.random() * 4);
         this.element = document.createElement('div');
         this.element.className = 'piece';
         this.addPieceToBoard();
@@ -53,7 +53,7 @@ export default class Piece {
     isInBounds() {
         const boardData = this.board.getBoundingClientRect();
         const trueX = Number(this.element.style.left.slice(0, -2));
-        if (trueX <= -this.element.clientWidth || trueX >= boardData.x + boardData.width) {
+        if (trueX <= boardData.x-this.element.clientWidth || trueX >= boardData.x + boardData.width) {
             return true;
         }
     }

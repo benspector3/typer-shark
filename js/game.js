@@ -1,6 +1,7 @@
 import Piece from './piece.js'
 
 const MAX_TIME = 60;
+const WORDS_PER_MINUTE = 60;
 
 export default class Game {
     constructor(words, board, scoreBoard, timer, missedWordsDisplay) {
@@ -21,9 +22,7 @@ export default class Game {
     }
 
     nextWord() {
-        const speed = 5 + (Math.random() * 4)
-
-        const newPiece = new Piece(board, this.words.pop(), speed)
+        const newPiece = new Piece(board, this.words.pop())
         this.pieces.push(newPiece)
         
         newPiece.setStartingPosition();
@@ -36,7 +35,6 @@ export default class Game {
         const matchingPiece = this.pieces[matchingPieceIdx]
         this.pieces.splice(matchingPieceIdx, 1)
         matchingPiece.element.remove();
-        this.nextWord();
         this.wordsTyped++;
         this.scoreBoard.innerText = this.wordsTyped;
     }
@@ -57,7 +55,7 @@ export default class Game {
 
     startTimers() {
         this.updateInterval = setInterval(this.update.bind(this), 50);
-        this.newWordInterval = setInterval(this.nextWord.bind(this), 3000);
+        this.newWordInterval = setInterval(this.nextWord.bind(this), (WORDS_PER_MINUTE / 60) * 1000);
         this.timerInterval = setInterval(this.timerTick.bind(this), 1000);
     }
 
