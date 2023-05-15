@@ -1,6 +1,6 @@
 import Piece from './piece.js'
 
-const MAX_TIME = 1;
+const MAX_TIME = 60;
 const WORDS_PER_MINUTE = 60;
 
 export default class Game {
