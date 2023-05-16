@@ -29,7 +29,7 @@ body {
 }
 
 #board {
-    background: url(https://static.vecteezy.com/system/resources/previews/000/273/915/original/ocean-background-vector.jpg);
+    background: url(../static/ocean-background-vector.jpg);
     background-size: cover;
     color: white;
     height: 100%;
