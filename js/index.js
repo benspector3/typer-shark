@@ -18,6 +18,7 @@ function main() {
         wordInput.focus();
         wordForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            if (game.isOver) return;
             game.submitWord(wordInput.value);
             wordInput.value = '';
             wordInput.focus();
